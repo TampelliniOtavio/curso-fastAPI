@@ -29,7 +29,7 @@ async def get_curso(curso_id: int):
     except KeyError:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Cruso não encontrado')
     
-@app.post('/cursos')
+@app.post('/cursos', status_code=status.HTTP_201_CREATED)
 async def post_curso(curso: Curso):
     next_id = len(cursos) + 1
     del curso.id
