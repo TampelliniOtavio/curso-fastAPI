@@ -31,11 +31,10 @@ async def get_curso(curso_id: int):
     
 @app.post('/cursos')
 async def post_curso(curso: Curso):
-    if curso.id not in cursos:
-        cursos[curso.id] = curso
-        return curso
-
-    raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f'Já existe um Curso com ID {curso.id}')
+    next_id = len(cursos) + 1
+    del curso.id
+    cursos[next_id] = curso
+    return curso
 
 if __name__ == "__main__":
     import uvicorn
