@@ -16,7 +16,7 @@ cursos = {
 }
 
 @app.get('/cursos')
-async def getCursos():
+async def get_cursos():
     return cursos
 
 if __name__ == "__main__":
