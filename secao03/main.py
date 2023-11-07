@@ -15,6 +15,10 @@ cursos = {
     },
 }
 
+@app.get('/cursos')
+async def getCursos():
+    return cursos
+
 if __name__ == "__main__":
     import uvicorn
 
