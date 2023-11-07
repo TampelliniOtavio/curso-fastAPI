@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
+from fastapi.responses import JSONResponse
 from models import Curso
 
 app = FastAPI()
@@ -44,6 +45,15 @@ async def put_curso(curso_id: int, curso: Curso):
     del curso.id
     cursos[curso_id] = curso
     return curso
+
+@app.delete('/cursos/{curso_id}', status_code=status.HTTP_204_NO_CONTENT)
+async def delete_curso(curso_id: int):
+    if curso_id not in cursos:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Não Existe um curso com ID {curso_id}.')
+
+    del cursos[curso_id]
+    return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content='')
+    
 
 if __name__ == "__main__":
     import uvicorn
