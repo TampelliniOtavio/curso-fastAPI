@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import JSONResponse
-from fastapi import Path
+from fastapi import Path, Query
 from models import Curso
+from typing import Optional
 
 app = FastAPI()
 
@@ -17,6 +18,11 @@ cursos = {
         'horas': 67,
     },
 }
+
+@app.get('/calculadora')
+async def get_calculadora(a: int = Query(default=0, gt=5), b: int = Query(default=0, gt=10), c: Optional[int] = 0):
+    soma = a + b + c
+    return {'resultado': soma}
 
 @app.get('/cursos')
 async def get_cursos():
