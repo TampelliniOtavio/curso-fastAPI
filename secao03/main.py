@@ -13,7 +13,9 @@ def fake_db():
         print('Fechando conexão com bando de dados...')
         sleep(1)
 
-app = FastAPI()
+app = FastAPI(
+    title="API de Cursos da Geek University"
+)
 
 cursos = {
     1: {
