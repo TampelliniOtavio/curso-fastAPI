@@ -9,5 +9,5 @@ class Curso(BaseModel):
 
 cursos = [
     Curso(id=1, titulo="Programação para Leigos", aulas=32, horas=54),
-    Curso(id=1, titulo="Algoritmos e Lógica de programação", aulas=42, horas=74),
+    Curso(id=2, titulo="Algoritmos e Lógica de programação", aulas=42, horas=74),
 ]
