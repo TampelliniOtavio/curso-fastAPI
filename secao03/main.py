@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi import Path, Query, Header, Depends
-from models import Curso
 from typing import Any, Optional
+from models import Curso, cursos
 from time import sleep
 
 def fake_db():
@@ -18,19 +18,6 @@ app = FastAPI(
     version='0.0.1',
     description="Uma API para estudo do FastAPI"
 )
-
-cursos = {
-    1: {
-        'titulo': 'Programação para leigos',
-        'aulas': 112,
-        'horas': 58,
-    },
-    2: {
-        'titulo': 'Algoritmos de Programação',
-        'aulas': 87,
-        'horas': 67,
-    },
-}
 
 @app.get('/calculadora')
 async def get_calculadora(
