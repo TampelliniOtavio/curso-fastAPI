@@ -15,7 +15,8 @@ def fake_db():
 
 app = FastAPI(
     title="API de Cursos da Geek University",
-    version='0.0.1'
+    version='0.0.1',
+    description="Uma API para estudo do FastAPI"
 )
 
 cursos = {
