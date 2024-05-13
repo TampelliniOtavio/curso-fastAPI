@@ -66,7 +66,7 @@ async def put_curso(curso_id: int, curso: CursoModel, db: AsyncSession = Depends
 
         return curso_up
 
-@router.delete("/{curso_id}", response_model=CursoModel, status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{curso_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def del_curso(curso_id: int, db: AsyncSession = Depends(get_session)):
     async with db as session:
         query = select(CursoModel).filter(CursoModel.id == curso_id)
