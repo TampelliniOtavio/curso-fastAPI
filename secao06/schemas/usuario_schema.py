@@ -10,7 +10,7 @@ class UsuarioSchemaBase(BaseModel):
     is_admin: bool = False
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UsuarioSchemaCreate(UsuarioSchemaBase):
     senha: str
