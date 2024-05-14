@@ -8,7 +8,7 @@ from models.usuario_model import UsuarioModel
 from schemas.usuario_schema import UsuarioSchemaBase, UsuarioSchemaArtigos, UsuarioSchemaCreate, UsuarioSchemaUpdate
 from core.deps import get_current_user, get_session
 from core.auth import autenticar, criar_token_acesso
-from secao06.core.security import gerar_hash_senha
+from core.security import gerar_hash_senha
 
 router = APIRouter()
 
