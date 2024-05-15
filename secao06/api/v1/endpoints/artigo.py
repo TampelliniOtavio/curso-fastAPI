@@ -15,7 +15,7 @@ async def post_artigo(artigo: ArtigoSchema, usuario_logado: UsuarioModel = Depen
     novo_artigo: ArtigoModel = ArtigoModel(
         titulo=artigo.titulo,
         descricao=artigo.descricao,
-        url_fonte=artigo.url_fonte,
+        url_fonte=artigo.url_fonte.unicode_string(),
         usuario_id=usuario_logado.id
     )
 
@@ -67,7 +67,7 @@ async def put_artigo(artigo_id: int, artigo: ArtigoSchema, db: AsyncSession = De
             artigo_up.descricao = artigo.descricao
         
         if artigo.url_fonte:
-            artigo_up.url_fonte = artigo.url_fonte
+            artigo_up.url_fonte = artigo.url_fonte.unicode_string()
         
         if usuario_logado.id != artigo_up.usuario_id:
             artigo_up.usuario_id = usuario_logado.id
