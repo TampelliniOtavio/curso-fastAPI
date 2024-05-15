@@ -2,6 +2,7 @@ from typing import List
 from fastapi import APIRouter, status, Depends, HTTPException, Response
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from models.usuario_model import UsuarioModel
@@ -29,9 +30,12 @@ async def post_signup(usuario: UsuarioSchemaCreate, db: AsyncSession = Depends(g
     )
 
     async with db as session:
-       session.add(novo_usuario)
-       await session.commit()
-       return novo_usuario
+        try:
+            session.add(novo_usuario)
+            await session.commit()
+            return novo_usuario
+        except IntegrityError:
+            raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Já existe um usuário com este email cadastrado")
 
 # GET Usuarios
 @router.get("/", response_model=List[UsuarioSchemaBase])
